@@ -8,7 +8,6 @@ Build variant A from the assignment: a three-state application boot flow impleme
 
 - `Core`: generic state-machine contracts and implementation.
 - `Boot`: concrete boot states and boot flow enum.
-- `Services`: async lifecycle abstraction for long-lived services.
 - `UI`: base `UIView`, generic `UIView<TVm>`, view models, and MonoBehaviour views.
 - `Composition`: Unity `LifetimeScope` that registers settings, services, states, view models, and controllers.
 
@@ -25,7 +24,6 @@ Build variant A from the assignment: a three-state application boot flow impleme
 - `IState`: exposes `UniTask EnterAsync(CancellationToken ct)` and `UniTask ExitAsync(CancellationToken ct)`.
 - `IStatesController<TEnum>`: exposes `UniTask EnterStateAsync(TEnum code, CancellationToken ct)`.
 - `StatesController<TEnum>`: stores the active state and guarantees `await current.ExitAsync(ct)` before `await next.EnterAsync(ct)`.
-- `IService`: exposes `InitializeAsync` and `ReleaseAsync` for app-level service lifetime.
 - `UIView`: owns `Initialize()` and `Release()`.
 - `UIView<TVm>`: binds a plain C# view model to Unity references; view models are not MonoBehaviours.
 

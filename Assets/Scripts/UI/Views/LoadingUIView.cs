@@ -1,5 +1,6 @@
-using R3;
+using System;
 using System.Globalization;
+using R3;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,9 +30,24 @@ namespace BootFlow.UI.Views
             if (ProgressText != null)
             {
                 var percent = Mathf.RoundToInt(clampedProgress * 100f);
-                ProgressText.text = string.IsNullOrWhiteSpace(ProgressFormat)
-                    ? percent.ToString(CultureInfo.InvariantCulture)
-                    : string.Format(CultureInfo.InvariantCulture, ProgressFormat, percent);
+                ProgressText.text = FormatProgress(percent);
+            }
+        }
+
+        private string FormatProgress(int percent)
+        {
+            if (string.IsNullOrWhiteSpace(ProgressFormat))
+            {
+                return percent.ToString(CultureInfo.InvariantCulture);
+            }
+
+            try
+            {
+                return string.Format(CultureInfo.InvariantCulture, ProgressFormat, percent);
+            }
+            catch (FormatException)
+            {
+                return percent.ToString(CultureInfo.InvariantCulture);
             }
         }
     }

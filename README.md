@@ -19,7 +19,8 @@ The repository contains the first working Boot Flow implementation: Splash -> Lo
 
 1. Clone the repository.
 2. Open the repository root in Unity Hub with Unity `6000.3.14f1`.
-3. Open `Assets/Scenes/SampleScene.unity`.
+3. Let Unity restore packages from `Packages/manifest.json`.
+4. Open `Assets/Scenes/Boot Flow.unity`.
 
 ## What I Would Do With 2 More Hours
 

@@ -15,6 +15,9 @@
 - Fixed R3 compilation by vendoring the required NuGet assemblies into `Assets/Plugins/R3`.
 - Implemented the first boot-flow runtime: generic state controller, Splash/Load/Menu states, VContainer composition root, prefab UI factory, R3 view-model bindings, and EditMode tests.
 - Created prefab-authored uGUI screens for splash, loading, and menu. Runtime code instantiates prefabs and binds dynamic values only; it does not construct UI hierarchies.
+- Cleaned unused Unity scene-template assets and removed an unused service contract.
+- Renamed the main scene from `SampleScene` to `Boot Flow` and updated build settings.
+- Hardened runtime code against missing serialized references, invalid loading text format strings, missing view components on UI prefabs, and corrupted boot timing values.
 
 ## Corrections / Risks
 

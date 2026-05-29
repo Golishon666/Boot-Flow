@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BootFlow.Boot;
 using BootFlow.Boot.States;
@@ -20,6 +21,8 @@ namespace BootFlow.Composition
 
         protected override void Configure(IContainerBuilder builder)
         {
+            ValidateSerializedReferences();
+
             builder.RegisterInstance(_settings).As<BootFlowSettings>();
             builder.RegisterInstance(CreateCatalog()).As<UIScreenCatalog>();
 
@@ -67,6 +70,23 @@ namespace BootFlow.Composition
                 { UIScreenCode.Loading, _loadingPrefab },
                 { UIScreenCode.Menu, _menuPrefab }
             });
+        }
+
+        private void ValidateSerializedReferences()
+        {
+            ThrowIfMissing(_settings, nameof(_settings));
+            ThrowIfMissing(_uiRoot, nameof(_uiRoot));
+            ThrowIfMissing(_splashPrefab, nameof(_splashPrefab));
+            ThrowIfMissing(_loadingPrefab, nameof(_loadingPrefab));
+            ThrowIfMissing(_menuPrefab, nameof(_menuPrefab));
+        }
+
+        private static void ThrowIfMissing(UnityEngine.Object value, string fieldName)
+        {
+            if (value == null)
+            {
+                throw new InvalidOperationException($"{nameof(BootFlowLifetimeScope)} is missing serialized reference '{fieldName}'.");
+            }
         }
     }
 }

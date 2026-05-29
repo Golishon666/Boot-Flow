@@ -7,7 +7,7 @@ using R3;
 
 namespace BootFlow.Boot.States
 {
-    public sealed class MenuState : IState
+    public sealed class MenuState : IState, IDisposable
     {
         private readonly IUIScreenFactory _screenFactory;
         private readonly MenuUIViewModel _viewModel;
@@ -58,6 +58,11 @@ namespace BootFlow.Boot.States
             catch (OperationCanceledException) when (_stateLifetimeToken.IsCancellationRequested)
             {
             }
+        }
+
+        public void Dispose()
+        {
+            _bindings.Dispose();
         }
     }
 }

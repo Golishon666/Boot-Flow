@@ -26,6 +26,12 @@ namespace BootFlow.UI
             var prefab = _catalog.GetPrefab(screenCode);
             var instance = _resolver.Instantiate(prefab.gameObject, _root, false);
             _currentView = instance.GetComponent<UIView>();
+            if (_currentView == null)
+            {
+                UnityEngine.Object.Destroy(instance);
+                throw new MissingComponentException($"UI prefab '{prefab.name}' does not contain a {nameof(UIView)} component.");
+            }
+
             _currentView.Initialize();
             return _currentView;
         }

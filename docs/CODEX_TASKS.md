@@ -11,7 +11,6 @@ Acceptance: Unity console has no compile errors after package restore.
 ## Task 2: Core Contracts
 
 - Add `IState`, `IStatesController<TEnum>`, and `StatesController<TEnum>`.
-- Add `IService` with async initialize/release lifecycle.
 - Add unit tests for transition order and cancellation propagation.
 
 Acceptance: tests prove `ExitAsync` runs before the next `EnterAsync`.

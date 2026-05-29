@@ -9,8 +9,8 @@ namespace BootFlow.Boot
         [SerializeField, Min(1)] private int _loadSteps = 5;
         [SerializeField, Min(0f)] private float _loadStepSeconds = 0.2f;
 
-        public float SplashSeconds => _splashSeconds;
-        public int LoadSteps => _loadSteps;
-        public float LoadStepSeconds => _loadStepSeconds;
+        public float SplashSeconds => Mathf.Max(0f, _splashSeconds);
+        public int LoadSteps => Mathf.Max(1, _loadSteps);
+        public float LoadStepSeconds => Mathf.Max(0f, _loadStepSeconds);
     }
 }

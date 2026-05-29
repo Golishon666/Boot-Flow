@@ -1,3 +1,4 @@
+using System;
 using BootFlow.Boot.States;
 using R3;
 
@@ -9,7 +10,7 @@ namespace BootFlow.UI
 
         public LoadingUIViewModel(ILoadProgressProvider progressProvider)
         {
-            _progressProvider = progressProvider;
+            _progressProvider = progressProvider ?? throw new ArgumentNullException(nameof(progressProvider));
         }
 
         public float CurrentProgress => _progressProvider.CurrentProgress;

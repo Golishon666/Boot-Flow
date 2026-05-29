@@ -1,8 +1,9 @@
+using System;
 using R3;
 
 namespace BootFlow.UI
 {
-    public sealed class MenuUIViewModel : IUIViewModel
+    public sealed class MenuUIViewModel : IUIViewModel, IDisposable
     {
         private readonly Subject<Unit> _restartRequested = new Subject<Unit>();
 
@@ -11,6 +12,11 @@ namespace BootFlow.UI
         public void RequestRestart()
         {
             _restartRequested.OnNext(Unit.Default);
+        }
+
+        public void Dispose()
+        {
+            _restartRequested.Dispose();
         }
     }
 }
