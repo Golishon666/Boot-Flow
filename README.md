@@ -12,16 +12,14 @@ The repository contains the first working Boot Flow implementation: Splash -> Lo
 - C#
 - VContainer
 - UniTask
-- R3 Unity package via OpenUPM, with required R3 NuGet DLLs vendored in `Assets/Plugins/R3`
-- DOTween is already present in `Assets/Plugins/DOTween`
-- UI screens must be prefab assets; runtime code must not hardcode or construct UI hierarchies.
+- R3 `Assets/Plugins/R3`
+- DOTween `Assets/Plugins/DOTween`
 
 ## How to Open
 
 1. Clone the repository.
 2. Open the repository root in Unity Hub with Unity `6000.3.14f1`.
-3. Let Unity restore packages from `Packages/manifest.json`.
-4. Open `Assets/Scenes/SampleScene.unity`.
+3. Open `Assets/Scenes/SampleScene.unity`.
 
 ## What I Would Do With 2 More Hours
 
