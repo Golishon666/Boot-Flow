@@ -18,7 +18,7 @@ namespace BootFlow.Boot
 
         public void Start()
         {
-            StartAsync(_lifetimeCts.Token).fireAndForget(onException: ex => UnityEngine.Debug.LogException(ex));
+            StartAsync(_lifetimeCts.Token).Forget();
         }
 
         public void Dispose()
@@ -35,6 +35,10 @@ namespace BootFlow.Boot
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
             {
+            }
+            catch (Exception exception)
+            {
+                UnityEngine.Debug.LogException(exception);
             }
         }
     }

@@ -14,7 +14,10 @@ namespace BootFlow.UI.Views
 
         protected override void OnInitialize(CompositeDisposable bindings)
         {
-            ProgressSlider?.value = 0f;
+            if (ProgressSlider != null)
+            {
+                ProgressSlider.value = 0f;
+            }
             RenderProgress(ViewModel.CurrentProgress);
             ViewModel.ProgressChanged.Subscribe(RenderProgress).AddTo(bindings);
         }
@@ -22,7 +25,11 @@ namespace BootFlow.UI.Views
         private void RenderProgress(float progress)
         {
             var clampedProgress = Mathf.Clamp01(progress);
-            ProgressSlider?.value = clampedProgress;
+
+            if (ProgressSlider != null)
+            {
+                ProgressSlider.value = clampedProgress;
+            }
 
             if (ProgressText != null)
             {
