@@ -55,6 +55,5 @@ Acceptance: all runtime dependencies come from VContainer.
 
 - Run EditMode tests.
 - Run a PlayMode smoke pass.
-- Update `README.md`, `SELF_NOTES.md`, and `AI_LOG.md` with final implementation notes.
 
 Acceptance: repository is ready to submit without `Library/`, `Temp/`, `Logs/`, or generated IDE files.
