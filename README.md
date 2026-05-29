@@ -12,7 +12,7 @@ The repository contains the Unity 6 project scaffold and implementation document
 - C#
 - VContainer
 - UniTask
-- R3 via OpenUPM
+- R3 Unity package via OpenUPM, with required R3 NuGet DLLs vendored in `Assets/Plugins/R3`
 - DOTween is already present in `Assets/Plugins/DOTween`
 - UI screens must be prefab assets; runtime code must not hardcode or construct UI hierarchies.
 

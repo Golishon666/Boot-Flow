@@ -12,8 +12,9 @@
 - Confirmed existing packages: VContainer, UniTask, DOTween, Input System, URP 2D.
 - Extracted the assignment requirements from `Quiz, Plese! Unity Middle+.pdf`.
 - Added documentation and repository metadata for the next implementation step.
+- Fixed R3 compilation by vendoring the required NuGet assemblies into `Assets/Plugins/R3`.
 
 ## Corrections / Risks
 
 - The local folder was not a git repository, while the remote repository only had placeholder files.
-- R3 is registered through OpenUPM in `Packages/manifest.json`; Unity should regenerate `Packages/packages-lock.json` after package resolution.
+- R3 Unity integration is registered through OpenUPM in `Packages/manifest.json`; its core NuGet assemblies are committed as plugin DLLs because the OpenUPM package expects those precompiled references to exist.
