@@ -12,6 +12,13 @@ Build variant A from the assignment: a three-state application boot flow impleme
 - `UI`: base `UIView`, generic `UIView<TVm>`, view models, and MonoBehaviour views.
 - `Composition`: Unity `LifetimeScope` that registers settings, services, states, view models, and controllers.
 
+## UI Prefab Policy
+
+- All screens are authored as prefab assets under `Assets/Prefabs/UI`.
+- Runtime code may instantiate prefab views through a UI factory/registry registered in VContainer.
+- Runtime code must not create or hardcode UI hierarchies, layout, colors, sprites, labels, buttons, progress bars, or anchors.
+- The scene should contain only stable hosts such as the composition root, event system, camera, and canvas/root transform needed for prefab placement.
+
 ## Main Contracts
 
 - `IState`: exposes `UniTask EnterAsync(CancellationToken ct)` and `UniTask ExitAsync(CancellationToken ct)`.

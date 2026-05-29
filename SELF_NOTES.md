@@ -11,6 +11,7 @@
 - The state machine stays generic as `IStatesController<TEnum>` so the boot flow can be tested without Unity scene objects.
 - States expose only behavior needed by other layers. `LoadState` owns progress as an R3 reactive property, while `LoadingUIView` only subscribes and renders it.
 - Async work uses `UniTask` and `CancellationToken` end to end so state changes and application shutdown can cancel delays safely.
+- UI is prefab-driven: code may instantiate registered prefab views, but must not create buttons, bars, labels, or layout hierarchies from hardcoded runtime construction.
 
 ## AI Usage
 
@@ -22,3 +23,4 @@
 - Why a state machine: the task explicitly requires deterministic `ExitAsync` then `EnterAsync` order, and a controller centralizes that rule.
 - Why view models are plain classes: it keeps Unity references out of logic and makes binding/restart behavior easier to test.
 - Why no singletons/static state: the task forbids them and VContainer gives a clearer lifetime model.
+- Why UI prefabs: prefab assets keep visual structure editable in Unity and prevent hidden UI layout decisions from being buried in C#.

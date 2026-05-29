@@ -19,8 +19,10 @@ Acceptance: tests prove `ExitAsync` runs before the next `EnterAsync`.
 ## Task 3: UI Base Layer
 
 - Add `IUIViewModel`, `UIView`, and `UIView<TVm>`.
+- Add a UI prefab factory/registry that receives prefab references from the composition root.
 - Views own Unity references and disposable bindings only.
 - View models stay plain C# classes.
+- Do not create UI controls or layout from C#; all screens must be prefab assets.
 
 Acceptance: a view can initialize, bind, release, and reinitialize without duplicate subscriptions.
 
@@ -34,16 +36,18 @@ Acceptance: repeated transitions do not leak subscriptions or throw NREs.
 
 ## Task 5: UI Screens
 
-- Create simple splash, loading, and menu uGUI views in the scene.
+- Create simple splash, loading, and menu uGUI prefabs under `Assets/Prefabs/UI`.
+- Reference those prefabs from the `LifetimeScope` or a serialized UI catalog/settings asset.
 - Loading view binds to load progress and updates the progress bar.
 - Menu view exposes a Restart button command that re-enters `Load`.
 
-Acceptance: entering Play Mode runs Splash -> Load -> Menu, and Restart runs Load -> Menu again.
+Acceptance: entering Play Mode runs Splash -> Load -> Menu from instantiated prefabs, and Restart runs Load -> Menu again.
 
 ## Task 6: Composition Root
 
 - Add a project `LifetimeScope`.
 - Register settings, services, states, state controller, view models, and views.
+- Register UI prefabs/catalog through serialized references; no resource-path strings for screen lookup.
 - Start the initial boot state from a Unity entry point without static state.
 
 Acceptance: all runtime dependencies come from VContainer.
