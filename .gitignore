@@ -10,7 +10,9 @@
 
 # IDE and generated project files
 .vs/
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 *.csproj
 *.unityproj
