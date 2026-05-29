@@ -1,5 +1,7 @@
 # AI_LOG
 
+Все промты AI документировал ниже. АИ так себе делает интерфейс. Пришлось прогресс бар самому сделать.
+
 ## Prompts Used
 
 - User asked to prepare the Boot Flow project, split the work into sequential Codex subtasks, create a separate architecture document, and use R3 for reactive code.
