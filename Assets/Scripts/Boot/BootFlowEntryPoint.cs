@@ -18,7 +18,7 @@ namespace BootFlow.Boot
 
         public void Start()
         {
-            StartAsync(_lifetimeCts.Token).Forget();
+            StartAsync(_lifetimeCts.Token).fireAndForget(onException: ex => UnityEngine.Debug.LogException(ex));
         }
 
         public void Dispose()

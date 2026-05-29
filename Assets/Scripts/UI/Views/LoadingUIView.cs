@@ -8,12 +8,13 @@ namespace BootFlow.UI.Views
 {
     public sealed class LoadingUIView : UIView<LoadingUIViewModel>
     {
-        public Image ProgressFill;
+        public Slider ProgressSlider;
         public Text ProgressText;
         public string ProgressFormat;
 
         protected override void OnInitialize(CompositeDisposable bindings)
         {
+            ProgressSlider?.value = 0f;
             RenderProgress(ViewModel.CurrentProgress);
             ViewModel.ProgressChanged.Subscribe(RenderProgress).AddTo(bindings);
         }
@@ -21,11 +22,7 @@ namespace BootFlow.UI.Views
         private void RenderProgress(float progress)
         {
             var clampedProgress = Mathf.Clamp01(progress);
-
-            if (ProgressFill != null)
-            {
-                ProgressFill.fillAmount = clampedProgress;
-            }
+            ProgressSlider?.value = clampedProgress;
 
             if (ProgressText != null)
             {
