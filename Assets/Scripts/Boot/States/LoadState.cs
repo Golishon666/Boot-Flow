@@ -11,17 +11,17 @@ namespace BootFlow.Boot.States
     {
         private readonly BootFlowSettings _settings;
         private readonly IUIScreenFactory _screenFactory;
-        private readonly IBootStateTransition _transition;
+        private readonly Lazy<IStatesController<BootStateCode>> _statesController;
         private readonly ReactiveProperty<float> _progress = new ReactiveProperty<float>(0f);
 
         public LoadState(
             BootFlowSettings settings,
             IUIScreenFactory screenFactory,
-            IBootStateTransition transition)
+            Lazy<IStatesController<BootStateCode>> statesController)
         {
             _settings = settings;
             _screenFactory = screenFactory;
-            _transition = transition;
+            _statesController = statesController;
         }
 
         public float CurrentProgress => _progress.CurrentValue;
@@ -38,7 +38,7 @@ namespace BootFlow.Boot.States
                 _progress.Value = (float)step / _settings.LoadSteps;
             }
 
-            await _transition.EnterStateAsync(BootStateCode.Menu, cancellationToken);
+            await _statesController.Value.EnterStateAsync(BootStateCode.Menu, cancellationToken);
         }
 
         public UniTask ExitAsync(CancellationToken cancellationToken)

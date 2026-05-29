@@ -11,7 +11,7 @@ namespace BootFlow.Boot.States
     {
         private readonly IUIScreenFactory _screenFactory;
         private readonly MenuUIViewModel _viewModel;
-        private readonly IBootStateTransition _transition;
+        private readonly Lazy<IStatesController<BootStateCode>> _statesController;
         private readonly CompositeDisposable _bindings = new CompositeDisposable();
         private CancellationToken _stateLifetimeToken;
         private bool _isRestarting;
@@ -19,11 +19,11 @@ namespace BootFlow.Boot.States
         public MenuState(
             IUIScreenFactory screenFactory,
             MenuUIViewModel viewModel,
-            IBootStateTransition transition)
+            Lazy<IStatesController<BootStateCode>> statesController)
         {
             _screenFactory = screenFactory;
             _viewModel = viewModel;
-            _transition = transition;
+            _statesController = statesController;
         }
 
         public UniTask EnterAsync(CancellationToken cancellationToken)
@@ -53,7 +53,7 @@ namespace BootFlow.Boot.States
 
             try
             {
-                await _transition.EnterStateAsync(BootStateCode.Load, _stateLifetimeToken);
+                await _statesController.Value.EnterStateAsync(BootStateCode.Load, _stateLifetimeToken);
             }
             catch (OperationCanceledException) when (_stateLifetimeToken.IsCancellationRequested)
             {

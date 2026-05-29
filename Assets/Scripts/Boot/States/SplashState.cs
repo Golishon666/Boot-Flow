@@ -10,23 +10,23 @@ namespace BootFlow.Boot.States
     {
         private readonly BootFlowSettings _settings;
         private readonly IUIScreenFactory _screenFactory;
-        private readonly IBootStateTransition _transition;
+        private readonly Lazy<IStatesController<BootStateCode>> _statesController;
 
         public SplashState(
             BootFlowSettings settings,
             IUIScreenFactory screenFactory,
-            IBootStateTransition transition)
+            Lazy<IStatesController<BootStateCode>> statesController)
         {
             _settings = settings;
             _screenFactory = screenFactory;
-            _transition = transition;
+            _statesController = statesController;
         }
 
         public async UniTask EnterAsync(CancellationToken cancellationToken)
         {
             _screenFactory.Show(UIScreenCode.Splash);
             await UniTask.Delay(TimeSpan.FromSeconds(_settings.SplashSeconds), cancellationToken: cancellationToken);
-            await _transition.EnterStateAsync(BootStateCode.Load, cancellationToken);
+            await _statesController.Value.EnterStateAsync(BootStateCode.Load, cancellationToken);
         }
 
         public UniTask ExitAsync(CancellationToken cancellationToken)

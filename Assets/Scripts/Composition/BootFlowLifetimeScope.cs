@@ -30,9 +30,10 @@ namespace BootFlow.Composition
             builder.Register<LoadingUIViewModel>(Lifetime.Singleton).AsSelf();
             builder.Register<MenuUIViewModel>(Lifetime.Singleton).AsSelf();
 
-            builder.Register<BootStateTransitionRouter>(Lifetime.Singleton)
-                .AsSelf()
-                .As<IBootStateTransition>();
+            builder.Register(
+                resolver => new Lazy<IStatesController<BootStateCode>>(
+                    () => resolver.Resolve<IStatesController<BootStateCode>>()),
+                Lifetime.Singleton);
 
             builder.Register<SplashState>(Lifetime.Singleton).AsSelf();
             builder.Register<LoadState>(Lifetime.Singleton)
@@ -52,12 +53,6 @@ namespace BootFlow.Composition
                     { BootStateCode.Menu, resolver.Resolve<MenuState>() }
                 }),
                 Lifetime.Singleton);
-
-            builder.RegisterBuildCallback(resolver =>
-            {
-                resolver.Resolve<BootStateTransitionRouter>()
-                    .Bind(resolver.Resolve<IStatesController<BootStateCode>>());
-            });
 
             builder.RegisterEntryPoint<BootFlowEntryPoint>();
         }
