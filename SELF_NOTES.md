@@ -16,7 +16,7 @@
 ## AI Usage
 
 - AI was used to inspect the project scaffold, extract the assignment text from the PDF, and draft the architecture/task documentation.
-- The implementation should still be reviewed line by line during the coding phase, especially R3 subscription lifetimes and VContainer registrations.
+- The implementation has been reviewed through compilation, EditMode tests, and a Play Mode smoke pass. Next manual review should focus on visual polish, repeated restart behavior, and prefab reference validation.
 
 ## Key Answers
 

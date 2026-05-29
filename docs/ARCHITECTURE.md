@@ -17,6 +17,7 @@ Build variant A from the assignment: a three-state application boot flow impleme
 - All screens are authored as prefab assets under `Assets/Prefabs/UI`.
 - Runtime code may instantiate prefab views through a UI factory/registry registered in VContainer.
 - Runtime code must not create or hardcode UI hierarchies, layout, colors, sprites, labels, buttons, progress bars, or anchors.
+- Dynamic UI values may be bound by views, but any display format belongs to the prefab serialized fields. For example, loading percent uses `ProgressFormat` on `LoadingUIView.prefab`.
 - The scene should contain only stable hosts such as the composition root, event system, camera, and canvas/root transform needed for prefab placement.
 
 ## Main Contracts
@@ -32,7 +33,8 @@ Build variant A from the assignment: a three-state application boot flow impleme
 
 1. `SplashState` shows splash UI, waits one second through `UniTask.Delay(..., cancellationToken: ct)`, then enters `Load`.
 2. `LoadState` shows loading UI and updates an R3 `ReactiveProperty<float>` from `0` to `1` over five 200 ms steps.
-3. `MenuState` shows the menu UI. The Restart button enters `Load`.
+3. `LoadingUIView` binds the progress bar fill and percent text to the `LoadState` progress provider.
+4. `MenuState` shows the menu UI. The Restart button enters `Load`.
 
 ## Reactive Policy
 

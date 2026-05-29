@@ -4,7 +4,7 @@ Unity test project for the Boot Flow variant.
 
 ## Current Status
 
-The repository contains the Unity 6 project scaffold and implementation documentation for the boot flow task. The next Codex step should implement the runtime code according to `docs/CODEX_TASKS.md` and `docs/ARCHITECTURE.md`.
+The repository contains the first working Boot Flow implementation: Splash -> Load -> Menu, with restart from Menu back through Load. Runtime orchestration is built around a custom async state controller, VContainer composition, UniTask cancellation, and R3 UI bindings.
 
 ## Requirements
 
@@ -25,8 +25,6 @@ The repository contains the Unity 6 project scaffold and implementation document
 
 ## What I Would Do With 2 More Hours
 
-- Implement the full state machine and the three boot states.
-- Add simple uGUI prefabs for splash, loading progress, and menu restart.
-- Add EditMode tests for state transition order and cancellation.
-- Add a PlayMode smoke test for repeated restart flow.
-- Replace placeholder UI with polished visual feedback and DOTween transitions.
+- Add a PlayMode automation test for repeated restart flow.
+- Replace placeholder visual styling with polished prefab-authored feedback and DOTween transitions.
+- Add a prefab validation test that fails if required UI references are missing.
