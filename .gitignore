@@ -1,0 +1,56 @@
+# Unity generated folders
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/.utmp/
+
+# IDE and generated project files
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.DotSettings.user
+
+# Unity generated meta/debug files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+mono_crash.*
+*.log
+
+# Packages/build artifacts
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+crashlytics-build.properties
+
+# Addressables and Visual Scripting caches
+/ServerData/
+/[Aa]ssets/StreamingAssets/aa*
+/[Aa]ssets/AddressableAssetsData/link.xml*
+/[Aa]ssets/Addressables_Temp*
+/[Aa]ssets/AddressableAssetsData/*/*.bin*
+/[Aa]ssets/Unity.VisualScripting.Generated/
+/[Aa]ssets/[Ss]ceneDependencyCache*
+/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
